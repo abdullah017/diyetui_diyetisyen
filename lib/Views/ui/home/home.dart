@@ -4,6 +4,8 @@ import 'package:fitdiyet_diyetisyen/Controllers/danisan_service.dart';
 
 import 'package:fitdiyet_diyetisyen/Models/randevu_danisan.dart';
 import 'package:fitdiyet_diyetisyen/Views/helpers/size_settings.dart';
+import 'package:fitdiyet_diyetisyen/Views/ui/danisan/danisan_detail.dart';
+
 import 'package:fitdiyet_diyetisyen/Views/ui/drawers/profil_page.dart';
 import 'package:fitdiyet_diyetisyen/Views/ui/drawers/randevu_ayarlari.dart';
 import 'package:fitdiyet_diyetisyen/Views/ui/login_screens/login_views.dart';
@@ -17,11 +19,13 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
+  
   @override
   _HomeViewState createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
+  
 // ignore: deprecated_member_use
   List<RandevuDanisan> randevuDanisanlar = new List<RandevuDanisan>();
   final DanisanService danisanService = DanisanService();
@@ -271,13 +275,13 @@ class _HomeViewState extends State<HomeView> {
                       var danisan = randevuDanisanlar[index];
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) => DiyetisyenListViewDetail(
-                          //       danisan: danisanlar[index],
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DanisanListViewDetail(
+                                danisan: randevuDanisanlar[index],
+                              ),
+                            ),
+                          );
                         },
                         child: DanisanCard(
                           danisan: danisan,
@@ -311,31 +315,6 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
-  // _getDiyetisyen() async {
-  //   DiyetisyenService.getDiyetisyenler().then(
-  //     (response) {
-  //       setState(
-  //         () {
-  //           Iterable list = json.decode(response.body);
-  //           diyetisyenler =
-  //               list.map((model) => Diyetisyen.fromJson(model)).toList();
-  //         },
-  //       );
-  //     },
-  //   );
-  //   // ).catchError(
-  //   //   (error, stackTrace) {
-  //   //     print("AHA BİR HATA YAKALADIM: $error");
-  //   //     if (error != null) {
-  //   //       Navigator.push(
-  //   //         context,
-  //   //         new MaterialPageRoute(builder: (context) => Login()),
-  //   //       );
-  //   //     }
-  //   //   },
-  //   // );
-  // }
 
   void logout() async {
     //var res = await DiyetisyenService.getData('/logout');

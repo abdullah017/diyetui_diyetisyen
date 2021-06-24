@@ -87,6 +87,25 @@ class DanisanService {
     print(response.body);
   }
 
+  static Future postBesinOneri(String ogunId, besinId,int danisanId) async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var url = baseUrl + "program/insert/$danisanId?token=" + localStorage.get("token");
+    var map = new Map<String, dynamic>();
+    map['ogun_id'] = ogunId; 
+    map['besin_id'] = besinId;
+    map['diyetisyen_id'] = localStorage.get("id");
+
+    http.Response response = await http
+        .post(
+      Uri.parse(url),
+      body: map,
+    )
+        .catchError((e) {
+      print(e);
+    });
+    print(response.body);
+  }
+
   static randevuData(data, apiUrl) async {
     try {
       var fullUrl = baseUrl + apiUrl;
