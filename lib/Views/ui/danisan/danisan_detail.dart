@@ -2,6 +2,7 @@ import 'package:fitdiyet_diyetisyen/Models/danisan_model.dart';
 import 'package:fitdiyet_diyetisyen/Models/randevu_danisan.dart';
 
 import 'package:fitdiyet_diyetisyen/Views/helpers/size_settings.dart';
+import 'package:fitdiyet_diyetisyen/Views/ui/danisan/danisan_profile.dart';
 import 'package:fitdiyet_diyetisyen/Views/ui/diyet/diyet_listesi.dart';
 
 import 'package:fitdiyet_diyetisyen/Views/widgets/appbar/arrow_back_appbar.dart';
@@ -232,6 +233,14 @@ class _DanisanListViewDetailState extends State<DanisanListViewDetail> {
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () async {
+                               Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DanisanProfile(
+                                    danisanId: int.parse(danisanModel.danisanId),
+                                  ),
+                                ),
+                              );
                               print(danisanModel.danisanId);
                             },
                           ),
